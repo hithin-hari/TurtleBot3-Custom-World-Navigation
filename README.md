@@ -1,40 +1,98 @@
-# TurtleBot3
-<img src="https://raw.githubusercontent.com/ROBOTIS-GIT/emanual/master/assets/images/platform/turtlebot3/logo_turtlebot3.png" width="300">
+# TurtleBot3 Custom World and Autonomous Navigation
 
-- Active Branches: noetic, humble, main
-- Legacy Branches: *-devel
+A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featuring a custom Gazebo world, TurtleBot3 simulation, saved environment mapping, and autonomous navigation using Nav2.
 
-## Open Source Projects Related to TurtleBot3
-- [turtlebot3](https://github.com/ROBOTIS-GIT/turtlebot3)
-- [turtlebot3_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_msgs)
-- [turtlebot3_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_simulations)
-- [turtlebot3_manipulation](https://github.com/ROBOTIS-GIT/turtlebot3_manipulation)
-- [turtlebot3_manipulation_simulations](https://github.com/ROBOTIS-GIT/turtlebot3_manipulation_simulations)
-- [turtlebot3_applications](https://github.com/ROBOTIS-GIT/turtlebot3_applications)
-- [turtlebot3_applications_msgs](https://github.com/ROBOTIS-GIT/turtlebot3_applications_msgs)
-- [turtlebot3_machine_learning](https://github.com/ROBOTIS-GIT/turtlebot3_machine_learning)
-- [turtlebot3_autorace](https://github.com/ROBOTIS-GIT/turtlebot3_autorace)
-- [turtlebot3_home_service_challenge](https://github.com/ROBOTIS-GIT/turtlebot3_home_service_challenge)
-- [hls_lfcd_lds_driver](https://github.com/ROBOTIS-GIT/hls_lfcd_lds_driver)
-- [ld08_driver](https://github.com/ROBOTIS-GIT/ld08_driver)
-- [open_manipulator](https://github.com/ROBOTIS-GIT/open_manipulator)
-- [dynamixel_sdk](https://github.com/ROBOTIS-GIT/DynamixelSDK)
-- [OpenCR-Hardware](https://github.com/ROBOTIS-GIT/OpenCR-Hardware)
-- [OpenCR](https://github.com/ROBOTIS-GIT/OpenCR)
+## Features
 
-## Documentation, Videos, and Community
+- Custom Gazebo world.
+- TurtleBot3 Burger simulation.
+- Custom environment map.
+- Single-robot autonomous navigation using Nav2.
+- AMCL-based robot localization.
+- RViz visualization and goal-based navigation.
+- Two-robot simulation and navigation configurations (additional testing pending).
 
-### Official Documentation
-- ⚙️ **[ROBOTIS DYNAMIXEL](https://dynamixel.com/)** – Official website for DYNAMIXEL
-- 📚 **[ROBOTIS e-Manual for Dynamixel SDK](http://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_sdk/overview/)** – Official guide for Dynamixel SDK
-- 📚 **[ROBOTIS e-Manual for TurtleBot3](http://turtlebot3.robotis.com/)** – Official guide for TurtleBot3
-- 📚 **[ROBOTIS e-Manual for OpenMANIPULATOR-X](https://emanual.robotis.com/docs/en/platform/openmanipulator_x/overview/)** – Official guide for OpenMANIPULATOR-X
+## Technologies
 
-### Learning Resources
-- 🎥 **[ROBOTIS YouTube Channel](https://www.youtube.com/@ROBOTISCHANNEL)**
-- 🎥 **[ROBOTIS Open Source YouTube Channel](https://www.youtube.com/@ROBOTISOpenSourceTeam)**
-- 🎥 **[ROBOTIS TurtleBot3 YouTube Playlist](https://www.youtube.com/playlist?list=PLRG6WP3c31_XI3wlvHlx2Mp8BYqgqDURU)** – Video tutorials for TurtleBot3
-- 🎥 **[ROBOTIS OpenMANIPULATOR YouTube Playlist](https://www.youtube.com/playlist?list=PLRG6WP3c31_WpEsB6_Rdt3KhiopXQlUkb)** – Video tutorials for OpenMANIPULATOR
+- Ubuntu 22.04
+- ROS 2 Humble
+- Gazebo Classic
+- TurtleBot3 Burger
+- SLAM Toolbox
+- Nav2
+- AMCL
+- RViz
+- Python
 
-### Community & Support
-- 💬 **[ROBOTIS Community Forum](https://forum.robotis.com/)** – Get help and discuss with other users
+## Project Structure
+
+```text
+turtlebot3_simulations/
+└── turtlebot3_gazebo/
+    ├── launch/
+    │   ├── my_custom_world.launch.py
+    │   ├── my_custom_world_two_robots.launch.py
+    │   └── my_custom_world_two_robots_nav.launch.py
+    ├── worlds/
+    │   └── my_custom_world.world
+    ├── models/
+    ├── navigation/
+    │   ├── maps/
+    │   ├── config/
+    │   ├── rviz/
+    │   └── scripts/
+    ├── CMakeLists.txt
+    └── package.xml
+```
+
+## Installation and Build
+
+Clone the repository into a ROS 2 workspace's `src` directory.
+
+Install the required ROS 2 dependencies, then build:
+
+```bash
+cd ~/Desktop/turtlebot
+
+source /opt/ros/humble/setup.bash
+
+colcon build --symlink-install
+```
+
+Source the workspace:
+
+```bash
+source install/setup.bash
+export TURTLEBOT3_MODEL=burger
+```
+
+## Running the Custom World
+
+```bash
+ros2 launch turtlebot3_gazebo my_custom_world.launch.py
+```
+
+## Running Autonomous Navigation
+
+In a separate terminal:
+
+```bash
+source /opt/ros/humble/setup.bash
+source ~/Desktop/turtlebot/install/setup.bash
+
+export TURTLEBOT3_MODEL=burger
+
+ros2 launch turtlebot3_navigation2 navigation2.launch.py \
+map:=$(ros2 pkg prefix turtlebot3_gazebo)/share/turtlebot3_gazebo/navigation/maps/my_custom_world_final.yaml \
+use_sim_time:=True
+```
+
+After RViz opens, use **2D Pose Estimate** to initialize the robot's position on the map. Then use **Nav2 Goal** to send navigation goals.
+
+## Original Project
+
+This project extends the open-source simulation package developed by ROBOTIS.
+
+Original repository: https://github.com/ROBOTIS-GIT/turtlebot3_simulations
+
+The original package and its licensing terms remain acknowledged.

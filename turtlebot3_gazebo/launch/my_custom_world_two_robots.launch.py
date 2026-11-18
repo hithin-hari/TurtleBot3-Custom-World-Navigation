@@ -83,7 +83,7 @@ def generate_launch_description():
                 ),
                 launch_arguments={
                     'use_sim_time': use_sim_time,
-                    'frame_prefix': f'{namespace}_{count+1}'
+                    'frame_prefix': f'{namespace}_{count+1}/'
                 }.items()
             )
         )

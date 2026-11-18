@@ -17,13 +17,13 @@ A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featu
 
 ### Single-Robot Autonomous Navigation using ROS 2 Nav2
 
-![Single Robot Screenshot](media/screenshot_1.png)
+![Single Robot Screenshot](media/screenshot_2.png)
 
 [Watch Single-Robot Navigation Demonstration](media/single_robot_navigation.webm)
 
 ### Two-Robot Autonomous Navigation using ROS 2 Nav2
 
-![Two Robot Screenshot](media/screenshot_2.png)
+![Two Robot Screenshot](media/screenshot_1.png)
 
 [Watch Two-Robot Navigation Demonstration](media/two_robot_navigation.webm)
 

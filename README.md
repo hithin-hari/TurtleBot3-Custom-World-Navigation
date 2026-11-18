@@ -1,16 +1,31 @@
 # TurtleBot3 Custom World and Autonomous Navigation
 
-A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featuring a custom Gazebo world, TurtleBot3 simulation, saved environment mapping, and autonomous navigation using Nav2.
+A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featuring a custom Gazebo world, TurtleBot3 simulation, environment mapping, and autonomous navigation using ROS 2 Nav2.
 
 ## Features
 
 - Custom Gazebo world.
 - TurtleBot3 Burger simulation.
 - Custom environment map.
-- Single-robot autonomous navigation using Nav2.
+- Single-robot autonomous navigation using ROS 2 Nav2.
+- Two-robot autonomous navigation using ROS 2 Nav2.
 - AMCL-based robot localization.
 - RViz visualization and goal-based navigation.
-- Two-robot simulation and navigation configurations (additional testing pending).
+- Multi-robot simulation in a shared Gazebo world.
+
+## Project Demonstrations
+
+### Single-Robot Autonomous Navigation using ROS 2 Nav2
+
+![Single Robot Screenshot](media/screenshot_1.png)
+
+[Watch Single-Robot Navigation Demonstration](media/single_robot_navigation.webm)
+
+### Two-Robot Autonomous Navigation using ROS 2 Nav2
+
+![Two Robot Screenshot](media/screenshot_2.png)
+
+[Watch Two-Robot Navigation Demonstration](media/two_robot_navigation.webm)
 
 ## Technologies
 
@@ -28,6 +43,11 @@ A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featu
 
 ```text
 turtlebot3_simulations/
+├── media/
+│   ├── screenshot_1.png
+│   ├── screenshot_2.png
+│   ├── single_robot_navigation.webm
+│   └── two_robot_navigation.webm
 └── turtlebot3_gazebo/
     ├── launch/
     │   ├── my_custom_world.launch.py

@@ -1,6 +1,6 @@
 # TurtleBot3 Custom World and Autonomous Navigation
 
-A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featuring a custom Gazebo world, TurtleBot3 simulation, environment mapping, and autonomous navigation using ROS 2 Nav2.
+A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featuring a custom Gazebo world, two TurtleBot3 robots, environment mapping, and independent autonomous navigation using ROS 2 Nav2.
 
 ## Features
 
@@ -9,9 +9,11 @@ A ROS 2 Humble project based on the ROBOTIS TurtleBot3 simulation package, featu
 - Custom environment map.
 - Single-robot autonomous navigation using ROS 2 Nav2.
 - Two-robot autonomous navigation using ROS 2 Nav2.
+- Independent Nav2 configurations for both robots.
 - AMCL-based robot localization.
-- RViz visualization and goal-based navigation.
-- Multi-robot simulation in a shared Gazebo world.
+- Combined TF for multi-robot visualization.
+- Both robots displayed in a single RViz window.
+- Independent navigation goals for each robot.
 
 ## Project Demonstrations
 
@@ -82,37 +84,6 @@ colcon build --symlink-install
 Source the workspace:
 
 ```bash
-source install/setup.bash
-export TURTLEBOT3_MODEL=burger
-```
-
-## Running the Custom World
-
-```bash
-ros2 launch turtlebot3_gazebo my_custom_world.launch.py
-```
-
-## Running Autonomous Navigation
-
-In a separate terminal:
-
-```bash
 source /opt/ros/humble/setup.bash
 source ~/Desktop/turtlebot/install/setup.bash
-
 export TURTLEBOT3_MODEL=burger
-
-ros2 launch turtlebot3_navigation2 navigation2.launch.py \
-map:=$(ros2 pkg prefix turtlebot3_gazebo)/share/turtlebot3_gazebo/navigation/maps/my_custom_world_final.yaml \
-use_sim_time:=True
-```
-
-After RViz opens, use **2D Pose Estimate** to initialize the robot's position on the map. Then use **Nav2 Goal** to send navigation goals.
-
-## Original Project
-
-This project extends the open-source simulation package developed by ROBOTIS.
-
-Original repository: https://github.com/ROBOTIS-GIT/turtlebot3_simulations
-
-The original package and its licensing terms remain acknowledged.
